@@ -39,7 +39,6 @@ template dijkstra*() =
         if alt < dist[next.to]:
           dist[next.to] = alt
           prev[next.to] = cur
-          pQ.delete(next.to)
           pQ.push(next.to)
 
     result = (dist, prev)
