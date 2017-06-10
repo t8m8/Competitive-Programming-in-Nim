@@ -22,7 +22,7 @@ suite "graphs":
     dijkstra()
 
     var
-      g: G = newUndirectedGraph("fixtures/graphs/simple_0.in")
+      g: G = newUndirectedGraph("tests/fixtures/graphs/simple_0.in")
       (dist, prev) = shortestPaths(g, 0)
       expectedDist = @[0, 246, 424, 545, 383, 495, 437, 516,
         460, 616, 415, 626, 463, 443, 273, 300, 604, 411,
