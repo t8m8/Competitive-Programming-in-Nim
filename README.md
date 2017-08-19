@@ -8,3 +8,7 @@
 
 - [x] Priority Queue(Binary Heap)
 - [x] Segment Tree
+
+## Utils
+
+- [x] Function Composition
