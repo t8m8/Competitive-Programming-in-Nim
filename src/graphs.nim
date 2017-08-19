@@ -2,32 +2,30 @@ import algorithm, sequtils
 
 import priorityqueue
 
-const Inf* = 1 shl 29
-
 type
-  G* = seq[seq[tuple[to: int, dist: int]]]
+  G*[T] = seq[seq[tuple[to: int, dist: T]]]
 
-proc newG*(n: int): G =
-  newSeqWith(n, newSeq[(int, int)]())
+proc newG*[T](n: int): G[T] =
+  newSeqWith(n, newSeq[(int, T)]())
 
-proc add*(self: var G, s, t, d: int) =
+proc add*[T](self: var G[T], s, t: int, d: T) =
   self[s].add((t, d))
 
 # ==============================================================================
 
 template dijkstra*() =
-  proc shortestPaths(g: G, start: int): (seq[int], seq[int]) =
+  proc shortestPaths[T](g: G[T], start: int): (seq[T], seq[int]) =
     var
       n = g.len
-      dist = newSeq[int](n)
+      dist = newSeq[T](n)
       prev = newSeq[int](n)
-      pQ = newPriorityQueue[int](
-        proc(a: int, b: int): int =
+      pQ = newPriorityQueue[T](
+        proc(a: T, b: T): int =
           if dist[a] != dist[b]: dist[a] - dist[b]
           else: a - b
       )
 
-    dist.fill(Inf)
+    dist.fill(high(T) div 2)
     prev.fill(-1)
     pQ.push(start)
     dist[start] = 0

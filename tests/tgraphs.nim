@@ -2,13 +2,13 @@ import unittest, os, sequtils, strutils
 
 include graphs
 
-proc newUndirectedGraph(filename: string): G =
+proc newUndirectedGraph[T](filename: string): G[T] =
   var f: File = open(filename, fmRead)
   defer: close(f)
   var
     input = f.readline.split.map(parseint)
     (n, m) = (input[0], input[1])
-  result = newG(n)
+  result = newG[T](n)
   for i in 0..<m:
     var
       e = f.readline.split.map(parseint)
@@ -22,7 +22,7 @@ suite "graphs":
     dijkstra()
 
     var
-      g: G = newUndirectedGraph("tests/fixtures/graphs/simple_0.in")
+      g = newUndirectedGraph[int]("tests/fixtures/graphs/simple_0.in")
       (dist, prev) = shortestPaths(g, 0)
       expectedDist = @[0, 246, 424, 545, 383, 495, 437, 516,
         460, 616, 415, 626, 463, 443, 273, 300, 604, 411,
