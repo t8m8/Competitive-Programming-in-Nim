@@ -8,6 +8,7 @@
 
 - [x] Priority Queue(Binary Heap)
 - [x] Segment Tree
+- [x] Disjoint Set
 
 ## Utils
 
